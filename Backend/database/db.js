@@ -1,0 +1,10 @@
+import mongoose from 'mongoose'
+const connectDB=async()=>{
+    try{
+        await mongoose.connect(`${process.env.MONGO_URI}/ekart`)
+        console.log("MongoDB connected successfully")
+    }catch(error){
+        console.log("mongoDB connection failed",error)
+    }
+}
+export default connectDB
