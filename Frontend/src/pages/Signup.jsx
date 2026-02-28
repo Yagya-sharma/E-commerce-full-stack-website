@@ -57,7 +57,7 @@ const Signup = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+        <div className="min-h-screen flex items-center justify-center bg-pink-100 px-4">
             <Card className="w-full max-w-md shadow-xl border border-slate-200 rounded-2xl">
                 <CardHeader className="space-y-2 text-center">
                     <CardTitle className="text-2xl font-bold text-slate-800">
@@ -81,7 +81,7 @@ const Signup = () => {
                                     required
                                     value={formData.firstName}
                                     onChange={handleChange}
-                                    className="focus:ring-2 focus:ring-blue-500"
+                                    className="focus:ring-2 focus:ring-pink-500"
                                 />
                             </div>
 
@@ -95,7 +95,7 @@ const Signup = () => {
                                     required
                                     value={formData.lastName}
                                     onChange={handleChange}
-                                    className="focus:ring-2 focus:ring-blue-500"
+                                    className="focus:ring-2 focus:ring-pink-500"
                                 />
                             </div>
                         </div>
@@ -110,7 +110,7 @@ const Signup = () => {
                                 required
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="focus:ring-2 focus:ring-blue-500"
+                                className="focus:ring-2 focus:ring-pink-500"
                             />
                         </div>
 
@@ -125,7 +125,7 @@ const Signup = () => {
                                     required
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="pr-10 focus:ring-2 focus:ring-blue-500"
+                                    className="pr-10 focus:ring-2 focus:ring-pink-500"
                                 />
                                 {
                                     showPassword ?
@@ -145,7 +145,7 @@ const Signup = () => {
                         <Button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-200"
+                            className="w-full bg-pink-600 hover:bg-pink-700 text-white font-medium transition-all duration-200"
                         >
                             {
                                 loading ?
@@ -164,7 +164,7 @@ const Signup = () => {
                     Already have an account?
                     <Link
                         to={'/login'}
-                        className="ml-1 text-blue-600 hover:text-blue-700 font-medium"
+                        className="ml-1 text-pink-600 hover:text-pink-700 font-medium"
                     >
                         Login
                     </Link>

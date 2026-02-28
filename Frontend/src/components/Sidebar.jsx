@@ -24,87 +24,130 @@
 // export default Sidebar
 
 
-
-import { LayoutDashboard, PackagePlus, PackageSearch, Users } from 'lucide-react'
-import React from 'react'
-import { FaRegEdit } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom'
+import { useState } from "react"
+import { NavLink } from "react-router-dom"
+import { LayoutDashboard, PackagePlus, PackageSearch, Users } from "lucide-react"
+import { FaRegEdit } from "react-icons/fa"
 
 const Sidebar = () => {
-    return (
-        <div className='hidden fixed md:block border-r bg-purple-50 border-purple-200 w-[280px] p-8 space-y-4 h-screen shadow-sm'>
-            
-            <div className='text-center pt-20 space-y-3'>
+  const [mobileOpen, setMobileOpen] = useState(false)
 
-                <NavLink
-                    to='/dashboard/sales'
-                    className={({ isActive }) =>
-                        `text-lg ${isActive
-                            ? "bg-purple-600 text-white shadow-md"
-                            : "text-gray-700 hover:bg-purple-100"
-                        } flex items-center gap-3 font-semibold cursor-pointer p-3 rounded-xl transition-all duration-200`
-                    }
-                >
-                    <LayoutDashboard />
-                    <span>Dashboard</span>
-                </NavLink>
+  return (
+    <>
+      {/* ================= DESKTOP SIDEBAR ================= */}
+      <div className="hidden md:block fixed border-r bg-pink-50 border-pink-200 w-[300px] p-10 h-screen">
+        <div className="pt-20 space-y-3">
 
-                <NavLink
-                    to='/dashboard/add-product'
-                    className={({ isActive }) =>
-                        `text-lg ${isActive
-                            ? "bg-purple-600 text-white shadow-md"
-                            : "text-gray-700 hover:bg-purple-100"
-                        } flex items-center gap-3 font-semibold cursor-pointer p-3 rounded-xl transition-all duration-200`
-                    }
-                >
-                    <PackagePlus />
-                    <span>Add Product</span>
-                </NavLink>
+          <NavLink to="/dashboard/sales"
+            className={({ isActive }) =>
+              `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+              flex items-center gap-2 font-bold p-3 rounded-2xl w-full`
+            }>
+            <LayoutDashboard /> Dashboard
+          </NavLink>
 
-                <NavLink
-                    to='/dashboard/products'
-                    className={({ isActive }) =>
-                        `text-lg ${isActive
-                            ? "bg-purple-600 text-white shadow-md"
-                            : "text-gray-700 hover:bg-purple-100"
-                        } flex items-center gap-3 font-semibold cursor-pointer p-3 rounded-xl transition-all duration-200`
-                    }
-                >
-                    <PackageSearch />
-                    <span>Products</span>
-                </NavLink>
+          <NavLink to="/dashboard/add-product"
+            className={({ isActive }) =>
+              `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+              flex items-center gap-2 font-bold p-3 rounded-2xl w-full`
+            }>
+            <PackagePlus /> Add Product
+          </NavLink>
 
-                <NavLink
-                    to='/dashboard/users'
-                    className={({ isActive }) =>
-                        `text-lg ${isActive
-                            ? "bg-purple-600 text-white shadow-md"
-                            : "text-gray-700 hover:bg-purple-100"
-                        } flex items-center gap-3 font-semibold cursor-pointer p-3 rounded-xl transition-all duration-200`
-                    }
-                >
-                    <Users />
-                    <span>Users</span>
-                </NavLink>
+          <NavLink to="/dashboard/products"
+            className={({ isActive }) =>
+              `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+              flex items-center gap-2 font-bold p-3 rounded-2xl w-full`
+            }>
+            <PackageSearch /> Products
+          </NavLink>
 
-                <NavLink
-                    to='/dashboard/orders'
-                    className={({ isActive }) =>
-                        `text-lg ${isActive
-                            ? "bg-purple-600 text-white shadow-md"
-                            : "text-gray-700 hover:bg-purple-100"
-                        } flex items-center gap-3 font-semibold cursor-pointer p-3 rounded-xl transition-all duration-200`
-                    }
-                >
-                    <FaRegEdit />
-                    <span>Orders</span>
-                </NavLink>
+          <NavLink to="/dashboard/users"
+            className={({ isActive }) =>
+              `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+              flex items-center gap-2 font-bold p-3 rounded-2xl w-full`
+            }>
+            <Users /> Users
+          </NavLink>
 
-            </div>
+          <NavLink to="/dashboard/orders"
+            className={({ isActive }) =>
+              `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+              flex items-center gap-2 font-bold p-3 rounded-2xl w-full`
+            }>
+            <FaRegEdit /> Orders
+          </NavLink>
+
         </div>
-    )
+      </div>
+
+      {/* ================= MOBILE TOP BAR ================= */}
+      <div className="md:hidden fixed top-0 left-0 w-full bg-pink-50 border-b border-pink-200 flex justify-between items-center p-4 z-50">
+        <h2 className="font-bold text-lg">Dashboard</h2>
+        <button onClick={() => setMobileOpen(true)} className="text-2xl">
+          ☰
+        </button>
+      </div>
+
+      {/* ================= MOBILE DRAWER ================= */}
+      {mobileOpen && (
+        <div className="fixed inset-0 bg-black/40 z-40">
+          <div className="bg-white w-[260px] h-full p-6 space-y-4">
+            <button
+              className="text-right w-full text-xl"
+              onClick={() => setMobileOpen(false)}
+            >
+              ✕
+            </button>
+
+            <NavLink to="/dashboard/sales" onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+                flex items-center gap-2 font-bold p-3 rounded-xl`
+              }>
+              <LayoutDashboard /> Dashboard
+            </NavLink>
+
+            <NavLink to="/dashboard/add-product" onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+                flex items-center gap-2 font-bold p-3 rounded-xl`
+              }>
+              <PackagePlus /> Add Product
+            </NavLink>
+
+            <NavLink to="/dashboard/products" onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+                flex items-center gap-2 font-bold p-3 rounded-xl`
+              }>
+              <PackageSearch /> Products
+            </NavLink>
+
+            <NavLink to="/dashboard/users" onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+                flex items-center gap-2 font-bold p-3 rounded-xl`
+              }>
+              <Users /> Users
+            </NavLink>
+
+            <NavLink to="/dashboard/orders" onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `text-lg ${isActive ? "bg-pink-600 text-white" : ""}
+                flex items-center gap-2 font-bold p-3 rounded-xl`
+              }>
+              <FaRegEdit /> Orders
+            </NavLink>
+
+          </div>
+        </div>
+      )}
+    </>
+  )
 }
 
 export default Sidebar
+
+
 

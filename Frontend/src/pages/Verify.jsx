@@ -56,7 +56,7 @@ const Verify = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-pink-100 px-4">
 
       <div className="bg-white border border-slate-200 shadow-xl rounded-2xl p-8 w-full max-w-md text-center space-y-6">
 
@@ -78,7 +78,7 @@ const Verify = () => {
         <button
           onClick={handleResend}
           disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition duration-200 disabled:opacity-60"
+          className="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg font-medium transition duration-200 disabled:opacity-60"
         >
           {loading ? (
             <span className="flex items-center justify-center gap-2">

@@ -34,47 +34,18 @@ const AdminUsers = () => {
   useEffect(()=>{
     getAllUsers()
   },[])
-  // return (
-  //   <div className='pl-[350px] pt-30 pr-20 mx-auto px-4'>
-  //     <h1 className='font-bold text-2xl'>User Management</h1>
-  //     <p>View and manage registered users</p>
-  //     <div className='flex relative w-[300px] mt-6'>
-  //       <Search className='absolute left-2 top-1 text-gray-600 w-5' />
-  //       <Input value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)} className='pl-10' placeholder='Search Users...' />
-  //     </div>
-  //     <div className='grid grid-cols-3 gap-7 mt-7'>
-  //       {
-  //         users.map((user,index)=>{
-  //           return <div key={index} className='bg-pink-100 p-5 rounded-lg'>
-  //             <div className='flex items-center gap-2'>
-  //               <img src={user?.profilePic ||UserLogo } alt="" className='rounded-full w-16 aspect-square object-cover border border-pink-600'/>
-  //              <div>
-  //             <h1 className='font-semibold'>{user?.firstName} {user?.lastName}</h1>
-  //             <h3>{user?.email}</h3>
-  //             </div>
-  //             </div>
-  //             <div className='flex gap-3 mt-3'>
-  //               <Button onClick={()=>navigate(`/dashboard/users/${user?._id}`)} variant='outline'><Edit/>Edit</Button>
-  //               <Button onClick={()=>navigate(`/dashboard/users/orders/${user?._id}`)} ><Eye/>Show order</Button>
-  //             </div>
-  //           </div>
-  //         })
-  //       }
-  //     </div>
-  //   </div>
-  // )
+ 
 
   return (
-  <div className='pl-[350px] pt-32 pr-20 min-h-screen bg-gray-50'>
-    
+  <div className='pt-32 px-4 md:pl-[350px] md:pr-20 min-h-screen bg-gray-50'>
     {/* Header */}
-    <div className='mb-8'>
+    <div className='mb-8 text-center md:text-left'>
       <h1 className='text-3xl font-bold text-gray-800'>User Management</h1>
       <p className='text-gray-500 mt-1'>View and manage registered users</p>
     </div>
 
     {/* Search */}
-    <div className='relative w-[350px] mb-10'>
+    <div className='relative w-full max-w-[350px] mb-10'>
       <Search className='absolute left-3 top-3 text-gray-400 w-5 h-5' />
       <Input
         value={searchTerm}

@@ -65,60 +65,13 @@ const AddProduct = () => {
             setLoading(false)
         }
     }
-//   return (
-//     <div className='pl-[350px] py-20 pr=20 mx-auto px-4 bg-gray-100'>
-//       <Card className='w-full my-20'>
-//         <CardHeader>
-//             <CardTitle>Add Product</CardTitle>
-//             <CardDescription>Enter Product details below</CardDescription>
-//         </CardHeader>
-//         <CardContent>
-//             <div className='flex flex-col gap-2'>
-//                 <div className='grid gap-2'>
-//                     <Label>Product Name</Label>
-//                     <Input type='text' name='productName' value={productData.productName} onChange={handleChange} placeholder="Ex-Iphone" />
-//                 </div>
-//                 <div className='grid gap-2'>
-//                     <Label>Price</Label>
-//                     <Input type='number' name='productPrice' value={productData.productPrice} onChange={handleChange} placeholder="" required />
-//                 </div>
-//                 <div className='grid grid-cols-2 gap-4'>
-//                     <div className='grid gap-2'>
-//                         <Label>Brand</Label>
-//                         <Input type='text' name="brand" value={productData.brand} onChange={handleChange} placeholder="Ex-apple" required />
-//                     </div>
-//                      <div className='grid gap-2'>
-//                         <Label>Category</Label>
-//                         <Input type='text' name="category" value={productData.category} onChange={handleChange} placeholder="Ex-mobile" required />
-//                     </div>
-//                 </div>
-//                 <div className='grid gap-2'>
-//                     <div className='flex items-center'>
-//                         <Label>Description</Label>
-//                     </div>
-//                     <Textarea name='productDesc' value={productData.productDesc} onChange={handleChange} placeholder='Enter brief description of product' />
-//                 </div>
-//                 <ImageUpload productData={productData} setProductData={setProductData} />
-//             </div>
-//             <CardFooter className='flex-col gap-2'>
-//                 <Button disabled={loading} 
-//                 onClick={submitHandler} 
-//                 className='w-full mt-6 bg-pink-600 cursor-pointer' type="submit">
-//                     {
-//                         loading?<span className='flex gap-1 items-center'><Loader2 className='animate-spin'/>Please wait</span>:'Add Product'
-//                     }
-//                 </Button>
-//             </CardFooter>
-//         </CardContent>
-//       </Card>
-//     </div>
-//   )
+
 
 return (
-  <div className='md:pl-[300px] py-16 px-4 bg-purple-50 min-h-screen'>
+  <div className='md:pl-[300px] py-16 px-4 bg-pink-50 min-h-screen'>
     
     <div className='max-w-4xl mx-auto'>
-      <Card className='shadow-lg border border-purple-100 rounded-2xl'>
+      <Card className='shadow-lg border border-pink-100 rounded-2xl'>
         
         <CardHeader className='space-y-1'>
           <CardTitle className='text-2xl font-bold text-gray-800'>
@@ -141,7 +94,7 @@ return (
                 value={productData.productName}
                 onChange={handleChange}
                 placeholder="Ex - iPhone"
-                className='focus-visible:ring-purple-500'
+                className='focus-visible:ring-pink-500'
               />
             </div>
 
@@ -153,7 +106,7 @@ return (
                 name='productPrice'
                 value={productData.productPrice}
                 onChange={handleChange}
-                className='focus-visible:ring-purple-500'
+                className='focus-visible:ring-pink-500'
               />
             </div>
 
@@ -167,7 +120,7 @@ return (
                   value={productData.brand}
                   onChange={handleChange}
                   placeholder="Ex - Apple"
-                  className='focus-visible:ring-purple-500'
+                  className='focus-visible:ring-pink-500'
                 />
               </div>
 
@@ -179,7 +132,7 @@ return (
                   value={productData.category}
                   onChange={handleChange}
                   placeholder="Ex - Mobile"
-                  className='focus-visible:ring-purple-500'
+                  className='focus-visible:ring-pink-500'
                 />
               </div>
             </div>
@@ -192,7 +145,7 @@ return (
                 value={productData.productDesc}
                 onChange={handleChange}
                 placeholder='Enter brief description of product'
-                className='focus-visible:ring-purple-500'
+                className='focus-visible:ring-pink-500'
               />
             </div>
 
@@ -209,7 +162,7 @@ return (
               disabled={loading}
               onClick={submitHandler}
               type="submit"
-              className='w-full bg-purple-600 hover:bg-purple-700 text-white transition-all duration-200'
+              className='w-full bg-pink-600 hover:bg-pink-700 text-white transition-all duration-200'
             >
               {
                 loading

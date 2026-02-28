@@ -23,7 +23,7 @@ const ShowUserOrders = () => {
     getUserOrders()
   },[])
   return (
-    <div className='pl-[350px] py-20'>
+    <div className='py-20 px-4 md:pl-[350px]'>
       <OrderCard userOrder={userOrder}/>
     </div>
   )

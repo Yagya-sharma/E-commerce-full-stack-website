@@ -75,7 +75,7 @@ const VerifyEmail = () => {
     }, [token])
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+        <div className="min-h-screen flex items-center justify-center bg-pink-100 px-4">
 
             <div className="bg-white max-w-md w-full p-8 rounded-2xl shadow-xl text-center space-y-4">
 
