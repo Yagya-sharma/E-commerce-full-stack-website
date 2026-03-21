@@ -54,7 +54,7 @@ const VerifyEmail = () => {
     const VerifyEmail = async () => {
         try {
             const res = await axios.post(
-                `http://localhost:8000/api/v1/user/verify`,
+                `${import.meta.env.VITE_URL}/api/v1/user/verify`,
                 {},
                 {
                     headers: { Authorization: `Bearer ${token}` }

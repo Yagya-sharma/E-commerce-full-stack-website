@@ -38,7 +38,7 @@ const Signup = () => {
         e.preventDefault()
         try {
             setLoading(true)
-            const res = await axios.post(`http://localhost:8000/api/v1/user/register`, formData, {
+            const res = await axios.post(`${import.meta.env.VITE_URL}/api/v1/user/register`, formData, {
                 headers: {
                     "Content-type": "application/json"
                 }
@@ -50,7 +50,7 @@ const Signup = () => {
                 toast.success(res.data.message)
             }
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error?.response?.data?.message || "Something went wrong")
         } finally {
             setLoading(false)
         }

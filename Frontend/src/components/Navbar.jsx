@@ -19,7 +19,7 @@ const Navbar = () => {
     const navigate=useNavigate()
     const logoutHandler=async()=>{
         try {
-            const res=await axios.post(`http://localhost:8000/api/v1/user/logout`,{},{
+            const res=await axios.post(`${import.meta.env.VITE_URL}/api/v1/user/logout`,{},{
                 headers:{
                     Authorization:`Bearer ${accessToken}`
                 }
@@ -37,7 +37,7 @@ const Navbar = () => {
     useEffect(() => {
   const fetchCart = async () => {
     const res = await axios.get(
-      "http://localhost:8000/api/v1/cart",
+        `${import.meta.env.VITE_URL}/api/v1/cart`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`
