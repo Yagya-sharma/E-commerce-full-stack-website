@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { setCart } from '@/redux/productSlice'
+import { toast } from 'sonner'
 
 const Cart = () => {
   const {cart}=useSelector(store=>store.product)
