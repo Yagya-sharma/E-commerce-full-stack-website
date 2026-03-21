@@ -1,4 +1,4 @@
-import FilterSideBar from '@/components/filterSideBar'
+import FilterSideBar from '@/components/FilterSideBar'
 import React, { useEffect,useState } from 'react'
 
 import {
