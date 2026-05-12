@@ -60,7 +60,7 @@
 
 //     } catch (error) {
 //         console.error(" Email Error:", error.message);
-        
+
 //     }
 // };
 
@@ -76,15 +76,18 @@ export const verifyEmail = async (token, email) => {
 
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
-            port:587,
-            secure:false,
+            port: 587,
+            secure: false,
             auth: {
                 user: process.env.MAIL_USER,
                 pass: process.env.MAIL_PASS
+            },
+            tls: {
+                rejectUnauthorized: false
             }
         });
 
-        await transporter.verify();
+        // await transporter.verify();
         console.log("✅ Mail server ready");
 
         const verifyLink = `${process.env.FRONTEND_URL}/verify/${token}`;
