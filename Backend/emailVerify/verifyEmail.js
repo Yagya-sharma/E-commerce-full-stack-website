@@ -42,13 +42,14 @@ export const verifyEmail = async (token, email) => {
             }
         });
 
+        const verifyLink=`${process.env.FRONTEND_URL}/verify/${token}`
+
         const mailConfigurations = {
             from: process.env.MAIL_USER,
             to: email,
             subject: 'Email Verification',
             text: `Hi! You recently registered.
-Please verify your email:
-http://localhost:5173/verify/${token}
+Please verify your email:${verifyLink}
 Thanks`
         };
 
