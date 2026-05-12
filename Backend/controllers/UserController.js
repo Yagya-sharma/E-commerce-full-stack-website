@@ -10,6 +10,7 @@ import cloudinary from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
     try {
+        console.log("REGISTER API HIT");
         const { firstName, lastName, email, password } = req.body;
 
         
@@ -44,7 +45,10 @@ export const register = async (req, res) => {
             { expiresIn: '10m' }
         );
 
+        console.log("REGISTER API HIT");
+
         await verifyEmail(token, email);
+        console.log("VERIFY EMAIL FUNCTION CALLED");
 
         newUser.token = token;
         await newUser.save();
