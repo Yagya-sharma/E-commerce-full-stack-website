@@ -74,18 +74,29 @@ export const verifyEmail = async (token, email) => {
         console.log("MAIL USER:", process.env.MAIL_USER);
         console.log("FRONTEND URL:", process.env.FRONTEND_URL);
 
+        // const transporter = nodemailer.createTransport({
+        //     host: 'smtp.gmail.com',
+        //     port: 587,
+        //     secure: false,
+        //     auth: {
+        //         user: process.env.MAIL_USER,
+        //         pass: process.env.MAIL_PASS
+        //     },
+        //     tls: {
+        //         rejectUnauthorized: false
+        //     }
+        // });
+
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
+    },
+    family: 4
+});
 
         // await transporter.verify();
         console.log("✅ Mail server ready");
