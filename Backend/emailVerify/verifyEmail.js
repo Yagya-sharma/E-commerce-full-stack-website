@@ -75,7 +75,7 @@ export const verifyEmail = async (token, email) => {
         console.log("FRONTEND URL:", process.env.FRONTEND_URL);
 
         const transporter = nodemailer.createTransport({
-            service: 'smtp.gmail.com',
+            host: 'smtp.gmail.com',
             port:587,
             secure:false,
             auth: {
