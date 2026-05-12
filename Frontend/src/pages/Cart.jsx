@@ -83,31 +83,31 @@ const Cart = () => {
         cart?.items?.length > 0 ?
          <div className='max-w-7xl mx-auto'>
           <h1 className='text-2xl font-bold text-gray-800 mb-7'>Shopping Cart</h1>
-          <div className='w-full flex flex-col lg:flex-row gap-7'>
-            <div className='flex flex-col gap-5 flex-1'>
+          <div className='flex flex-col lg:flex-row gap-7 items-start w-full'>
+            <div className='flex flex-col gap-5 flex-1 min-w-0'>
               {cart?.items?.map((product,index)=>{
                 return <Card key={index}>
-                  <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4'>
+                  <div className='grid grid-cols-1 sm:grid-cols-4 gap-4 items-center w-full'>
                     <div className='flex items-center gap-4 flex-1'>
-                      <img src={product?.productId?.productImg?.[0]?.url || userLogo} alt="" className='w-25 h-25' />
+                      <img src={product?.productId?.productImg?.[0]?.url || userLogo} alt="" className='w-20 h-20 flex-shrink-0 object-cover' />
                       <div className='flex-1 min-w-0'>
-                        <h1 className='font-semibold truncate'>{product?.productId?.productName}</h1>
+                        <h1 className='font-semibold truncate max-w-full'>{product?.productId?.productName}</h1>
                         <p>₹{product?.productId?.productPrice}</p>
                       </div>
                     </div>
-                    <div className='flex gap-5 items-center'>
+                    <div className='flex gap-5 items-center flex-shrink-0'>
                       <Button onClick={()=>handleUpdateQuantity(product.productId._id,'decrease')} variant='outline'>-</Button>
                       <span>{product.quantity}</span>
                       <Button onClick={()=>handleUpdateQuantity(product.productId._id,'increase')} variant='outline'>+</Button>
                     </div>
                     <p>₹{(product?.productId?.productPrice)*(product?.quantity)}</p>
-                    <p onClick={()=>handleRemove(product?.productId?._id)} className='flex text-red-500 items-center gap-1 cursor-pointer'><Trash2 className='w-4 h-4' />Remove</p>
+                    <p onClick={()=>handleRemove(product?.productId?._id)} className='flex text-red-500 items-center gap-1 cursor-pointer whitespace-nowrap flex-shrink-0'><Trash2 className='w-4 h-4' />Remove</p>
                   </div>
                 </Card>
               })}
             </div>
-            <div className='w-full lg:w-[400px]'>
-              <Card className='w-[400px]'>
+            {/* <div className='w-full lg:w-[320px] flex-shrink-0'>
+              <Card className='w-full'>
               <CardHeader>
                 <CardTitle>OrderSummary</CardTitle>
               </CardHeader>
@@ -146,7 +146,59 @@ const Cart = () => {
                 </div>
               </CardContent>
               </Card>
-            </div>
+            </div> */}
+            <div className='w-full lg:w-[320px] flex-shrink-0 lg:sticky lg:top-24'>
+  <Card className='w-full'>
+    <CardHeader>
+      <CardTitle>OrderSummary</CardTitle>
+    </CardHeader>
+
+    <CardContent className='space-y-4'>
+      <div className='flex justify-between'>
+        <span>Subtotal ({cart?.items?.length}items)</span>
+        <span>₹{cart?.totalPrice?.toLocaleString('en-IN')}</span>
+      </div>
+
+      <div className='flex justify-between'>
+        <span>Shipping</span>
+        <span>₹{shipping}</span>
+      </div>
+
+      <div className='flex justify-between'>
+        <span>Tax(5%)</span>
+        <span>₹{tax}</span>
+      </div>
+
+      <Separator/>
+
+      <div className='flex justify-between font-bold text-lg'>
+        <span>Total</span>
+        <span>₹{total}</span>
+      </div>
+
+      <div className='space-y-3 pt-4'>
+        <div className='flex space-x-2'>
+          <Input placeholder="Promo Code"/>
+          <Button variant='outline'>Apply</Button>
+        </div>
+
+        <Button onClick={()=>navigate('/address')} className='w-full bg-pink-600'>
+          PLACE ORDER
+        </Button>
+
+        <Button variant='outline' className='w-full bg-transparent'>
+          <Link to="/products">Continue Shopping</Link>
+        </Button>
+      </div>
+
+      <div className='text-sm text-muted-foreground pt-4'>
+        <p>* Free shipping on orders over 299</p>
+        <p>* 30-days return policy</p>
+        <p>* Secure checkout with SSL encryption</p>
+      </div>
+    </CardContent>
+  </Card>
+</div>
           </div>
         </div>:<div className='flex flex-col items-center justify-center min-h-[60vh] p-6 text-center'>
           {/* icon */}
@@ -160,16 +212,6 @@ const Cart = () => {
         </div>
       }
     </div>
-
-
-
-
-
-
- 
-
-
-    
 
   )
 }

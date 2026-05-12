@@ -218,6 +218,8 @@ const Products = () => {
     getAllProducts()
   }, [])
 
+  
+
   return (
     <div className="pt-24 pb-10 px-4">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-7">
@@ -233,8 +235,8 @@ const Products = () => {
         </div>
 
         {/* Sidebar */}
-        {(showSidebar || window.innerWidth >= 1024) && (
-          <div className="w-full lg:w-72 xl:w-80 flex-shrink-0 mb-4 lg:mb-0">
+        
+          <div className={`${showSidebar ? "block" : "hidden"} lg:block w-full lg:w-72 xl:w-80 flex-shrink-0 mb-4 lg:mb-0`}>
             <FilterSideBar
               allProducts={allProducts}
               priceRange={priceRange}
@@ -247,7 +249,7 @@ const Products = () => {
               setPriceRange={setPriceRange}
             />
           </div>
-        )}
+        
 
         {/* Main Product Section */}
         <div className="flex-1 flex flex-col">
@@ -275,6 +277,7 @@ const Products = () => {
           </div>
         </div>
       </div>
+      
     </div>
   )
 }

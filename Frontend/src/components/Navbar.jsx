@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { setUser } from '@/redux/userSlice'
 import { setCart } from '@/redux/productSlice'  
+import { toast } from 'sonner'
 
 
 
@@ -17,39 +18,68 @@ const Navbar = () => {
     const admin=user?.role==="admin"?true:false
     const dispatch=useDispatch()
     const navigate=useNavigate()
-    const logoutHandler=async()=>{
-        try {
-            const res=await axios.post(`${import.meta.env.VITE_URL}/api/v1/user/logout`,{},{
-                headers:{
-                    Authorization:`Bearer ${accessToken}`
+   const logoutHandler = async () => {
+
+    try {
+
+        const token = localStorage.getItem("accessToken")
+
+        if (!token) {
+            return
+        }
+
+        const res = await axios.post(
+            `${import.meta.env.VITE_URL}/api/v1/user/logout`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            })
-            if(res.data.success){
-                dispatch(setUser(null))
-                toast.success(res.data.message)
             }
-        } catch (error) {
-            console.log(error)
+        )
+
+        if (res.data.success) {
+
+            localStorage.removeItem("accessToken")
+
+            dispatch(setUser(null))
+            dispatch(setCart([]))
+
+            toast.success(res.data.message)
+
+            navigate("/login")
         }
-     }
+
+    } catch (error) {
+
+        console.log(error.response?.data)
+
+        
+        localStorage.removeItem("accessToken")
+        dispatch(setUser(null))
+        dispatch(setCart([]))
+
+        navigate("/login")
+    }
+}
 
 
-    useEffect(() => {
-  const fetchCart = async () => {
-    const res = await axios.get(
-        `${import.meta.env.VITE_URL}/api/v1/cart`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      }
-    );
+//     useEffect(() => {
+//   const fetchCart = async () => {
+//     const res = await axios.get(
+//         `${import.meta.env.VITE_URL}/api/v1/cart`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`
+//         }
+//       }
+//     );
 
-    dispatch(setCart(res.data.cart));
-  };
+//     dispatch(setCart(res.data.cart));
+//   };
 
-  fetchCart();
-}, []);
+//   fetchCart();
+// }, []);
 
 
 
@@ -191,6 +221,42 @@ const Navbar = () => {
 //     )}
 //   </header>
 // )
+
+
+useEffect(() => {
+
+    const fetchCart = async () => {
+
+        try {
+
+            const token = localStorage.getItem("accessToken")
+
+            if (!token || !user) {
+                return
+            }
+
+            const res = await axios.get(
+                `${import.meta.env.VITE_URL}/api/v1/cart`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+
+            dispatch(setCart(res.data.cart))
+
+        } catch (error) {
+
+            console.log(error.response?.data)
+
+            dispatch(setCart([]))
+        }
+    }
+
+    fetchCart()
+
+}, [user])
 
 return (
   <header className="bg-pink-50 fixed w-full z-20 border-b border-pink-200">

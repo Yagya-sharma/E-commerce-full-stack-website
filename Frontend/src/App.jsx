@@ -23,6 +23,9 @@ import ProtectedRoute from './components/ProtectedRoute'
 import SingleProduct from './pages/SingleProduct'
 import AddressForm from './pages/AddressForm'
 import OrderSuccess from './pages/OrderSuccess'
+import ForgotPassword from './pages/ForgetPassword'
+import VerifyOTP from './pages/VerifyOTP'
+import ChangePassword from './pages/ChangePassword'
 
 const router=createBrowserRouter([
   {
@@ -36,6 +39,18 @@ const router=createBrowserRouter([
   {
     path:'/login',
     element:<><Login/></>
+  },
+  {
+    path:'/forgot-password',
+    element:<><ForgotPassword/></>
+  },
+  {
+    path:'/verify-otp',
+    element:<><VerifyOTP/></>
+  },
+  {
+    path:'/change-password',
+    element:<><ChangePassword/></>
   },
   {
     path:'/verify',

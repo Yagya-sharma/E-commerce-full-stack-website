@@ -123,8 +123,6 @@ export const addToCart = async (req, res) => {
   try {
     const { productId } = req.body;
     
-
-
     if (!req.user) {
       return res.status(401).json({
         success: false,
@@ -141,7 +139,7 @@ export const addToCart = async (req, res) => {
 
     const userId = req.user._id;
 
-    // ✅ FETCH PRODUCT FIRST
+    
     const foundProduct = await Product.findById(productId);
 
     if (!foundProduct) {
@@ -151,7 +149,7 @@ export const addToCart = async (req, res) => {
       });
     }
 
-    // ✅ FIND OR CREATE CART
+   
     let cart = await Cart.findOne({ userId });
 
     if (!cart) {
@@ -162,7 +160,7 @@ export const addToCart = async (req, res) => {
       });
     }
 
-    // ✅ CHECK IF PRODUCT EXISTS IN CART
+  
     const itemIndex = cart.items.findIndex(
       item => item.productId.toString() === productId
     );
@@ -173,11 +171,11 @@ export const addToCart = async (req, res) => {
       cart.items.push({
         productId,
         quantity: 1,
-        price: foundProduct.productPrice // ✅ SAFE
+        price: foundProduct.productPrice 
       });
     }
 
-    // ✅ UPDATE TOTAL PRICE
+   
     cart.totalPrice = cart.items.reduce(
       (total, item) => total + item.price * item.quantity,
       0

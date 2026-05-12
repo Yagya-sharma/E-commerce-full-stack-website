@@ -6,51 +6,13 @@ import { Session } from "../models/sessionModel.js";
 import { sendOTPMail } from "../emailVerify/sendOTPMail.js";
 import cloudinary from "../utils/cloudinary.js";
 
-// export const register = async (req, res) => {
-//     try {
-//         const { firstName, lastName, email, password } = req.body;
-//         if (!firstName || !lastName || !email || !password) {
-//             res.status(400).json({
-//                 success: false,
-//                 message: "All field are required"
-//             })
-//         }
-//         const user = await User.findOne({ email })
-//         if (user) {
-//             res.status(400).json({
-//                 success: false,
-//                 message: "User already exists"
-//             })
-//         }
-//         const hashedPassword = await bcrypt.hash(password, 10)
-//         const newUser = await User.create({
-//             firstName,
-//             lastName,
-//             email,
-//             password: hashedPassword
-//         })
-//         const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY, { expiresIn: '10m' })
-//         verifyEmail(token, email)  //send email here
-//         newUser.token = token
-//         await newUser.save()
-//         return res.status(201).json({
-//             success: true,
-//             message: "User registered successfully",
-//             user: newUser
-//         })
-//     } catch (error) {
-//         res.status(500).json({
-//             success: false,
-//             message: error.message
-//         })
-//     }
-// }
+
 
 export const register = async (req, res) => {
     try {
         const { firstName, lastName, email, password } = req.body;
 
-        // ✅ Fix 1: return added
+        
         if (!firstName || !lastName || !email || !password) {
             return res.status(400).json({
                 success: false,
@@ -60,7 +22,6 @@ export const register = async (req, res) => {
 
         const user = await User.findOne({ email });
 
-        // ✅ Fix 2: return added
         if (user) {
             return res.status(400).json({
                 success: false,
@@ -83,7 +44,6 @@ export const register = async (req, res) => {
             { expiresIn: '10m' }
         );
 
-        // ✅ Fix 3: await + error safe
         await verifyEmail(token, email);
 
         newUser.token = token;
@@ -277,6 +237,7 @@ export const forgotPassword = async (req, res) => {
             success: true,
             message: "OTP sent to email successfully"
         })
+        
     } catch (error) {
         return res.status(500).json({
             success: false,

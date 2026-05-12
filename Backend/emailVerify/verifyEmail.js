@@ -58,8 +58,8 @@ Thanks`
         console.log(info);
 
     } catch (error) {
-        console.error("❌ Email Error:", error.message);
-        // ❌ DON'T throw error
+        console.error(" Email Error:", error.message);
+        
     }
 };
 

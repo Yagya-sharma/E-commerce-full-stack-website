@@ -9,9 +9,7 @@ const FilterSidebar = ({search,setSearch,category,setCategory,brand,setBrand,all
 
   const Brands=allProducts.map(p=>p.brand)
   const UniqueBrand=["All",...new Set(Brands)]
-  console.log(Brands)
-  console.log(UniqueBrand)
-
+  
   const handleCategoryClick=(val)=>{
     setCategory(val)
   }
@@ -33,7 +31,7 @@ const resetFilters=()=>{
 setPriceRange([0,999999])
 }
   return (
-    <div className='bg-gray-100 mt-10 p-4 rounded-md h-max hidden md:block w-64'>
+    <div className='bg-gray-100 mt-10 p-4 rounded-md h-max  w-64'>
       {/* search */}
       <Input type="text" value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="Search.." className='bg-white p-2 rounded-md border-gray-400 border-2 w-full' />
       {/* category */}
@@ -73,7 +71,10 @@ setPriceRange([0,999999])
       </div>
       {/* reset button */}
       <Button onClick={resetFilters} className='bg-pink-600 text-white mt-5 cursor-pointer w-full'>Reset filters</Button>
+
     </div>
+
+    
   )
 }
 
